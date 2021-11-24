@@ -1,0 +1,51 @@
+#HiveOS instructions
+#Install deps
+apt-get install build-essential automake libssl-dev libcurl4-openssl-dev libjansson-dev libgmp-dev zlib1g-dev libnuma-dev git
+
+#If you get an error about libssl, first install all the others:
+apt-get install build-essential automake libcurl4-openssl-dev libjansson-dev libgmp-dev zlib1g-dev libnuma-dev git
+
+#Then you have to use a different command.  likely, this will force a downgrade of HiveOS to resolve the conflict
+#   You should be able to update after compiling..
+#   When you run this, the first option will be to not install, type N and hit enter to not accept
+#   The second will be to downgrade Hive and then install, hit Y and hit enter.
+aptitude install libssl-dev
+
+#check your version of g++ and gcc
+gcc --version
+g++ --version
+
+#Both need to be >=8.  If not update.
+apt install gcc-8
+apt install g++-8
+
+#gcc-10 and g++10 produce slightly faster code, but I am unable to get them installed on HiveOS
+#let me know if you can get it to work.
+
+#change the links in /usr/bin to point to the new compilers
+rm /usr/bin/gcc
+rm /usr/bin/g++
+ln -s /usr/bin/gcc-8 /usr/bin/gcc
+ln -s /usr/bin/g++-8 /usr/bin/g++
+
+#now attempt to compile:
+git clone https://github.com/Owesatuma/cpuminer-gr-devfee
+cd cpuminer-gr-devfee
+./build.sh
+
+#if you downgraded HiveOS to install libssl, then you can upgrade back
+selfupgrade --force
+
+#if compiled successfully, you should see the executible cpuminer in the directory.
+#copy that to the HiveOS miner directory. modify path as needed
+
+cp cpuminer /hive/miners/cpuminer-opt/gr/1.2.4.1
+
+#assuming HiveOS is using the cpuminer.sh shell script to decide on a version, you need to overwrite that
+nano cpuminer.sh
+
+#On line 12 or so change ./cpuminer-${1} to ./cpuminer  (no "-${1})
+#Your previous tune_config file should be OK, but retune if you like.
+#restart your miner and verify it is running. 
+miner restart; miner
+
