@@ -1,3 +1,30 @@
+About CPUMINER-GR-DEVFEE
+------------
+cpuminer-gr-devfee is a fork of cpuminer-gr by Delgon and Ausminers.
+This version was created to allow miners to update their donation
+percentages.  This code was updated for a few purposes
+
+1. Allow user to specify fee % on the command line without the hard minimum
+   limit of 1.75%.  You may now specify values under 1.75%, including 0.
+2. Fix bug where percentage of time spent in the Dev fee was larger than the
+   specified amount.  This was a trival amount and likely an honest mistake.
+3. Remove code that penalized users that attempted to fix #1 by changing code.
+   In the original version, if a user attempted to modify code to set the dev 
+   fee below 1.75% and/or change the dontation address, the code would increase
+   the dev fee considerably.  This is removed.  
+
+The work done by Delgon and Ausminers on the original version is fantastic. They
+should receive a dev fee.  As such, their dev fee addresses are still included
+and they will receive fees from this version in their original proportions.
+Owesatuma was added to the dev list receiving a smaller share.  
+
+**You are incouraged to keep the dev fee above 0 to reward those that have built
+the miner.**
+
+Currently miners must compile the application themselves.
+
+CPUMINER-GR
+------------
 cpuminer-gr is a fork of cpuminer-opt by Jay D Dee which is a fork of cpuminer-multi with optimizations
 imported from other miners developped by lucas Jones, djm34, Wolf0, pooler,
 Jeff garzik, ig0tik3d, elmad, palmd, and Optiminer, with additional
@@ -137,6 +164,10 @@ RTM Discord or opening an issue in git:
 https://discord.gg/2T8xG7e
 
 https://github.com/WyvernTKC/cpuminer-gr-avx2/issues
+
+Issues that do not occur in orginal miner but do in this fork:
+
+https://github.com/Owesatuma/cpuminer-gr-devfee/issues
 
 All problem reports must be accompanied by a proper problem definition.
 This should include how the problem occurred, the command line and
