@@ -4410,11 +4410,11 @@ int main(int argc, char *argv[]) {
     enable_donation = false;
   } else if (!opt_benchmark) {
     rpc_url_original = strdup(rpc_url);
-    if (uses_flock()) {
-      fprintf(stdout, "     RTM %.2lf%% Fee\n\n", donation_percent - 0.25);
-    } else {
+    // if (uses_flock()) {
+    //   fprintf(stdout, "     RTM %.2lf%% Fee\n\n", donation_percent - 0.25);
+    // } else {
       fprintf(stdout, "     RTM %.2lf%% Fee\n\n", donation_percent);
-    }
+    // }
   }
 
   if (!register_algo_gate(opt_algo, &algo_gate))
