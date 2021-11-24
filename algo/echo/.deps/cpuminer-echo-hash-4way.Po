@@ -1,0 +1,3 @@
+algo/echo/cpuminer-echo-hash-4way.o: algo/echo/echo-hash-4way.c \
+ /usr/include/stdc-predef.h
+/usr/include/stdc-predef.h:
