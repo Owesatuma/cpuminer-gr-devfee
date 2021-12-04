@@ -1392,7 +1392,7 @@ static bool uses_flock() {
 
 static void donation_switch() {
   long now = time(NULL);
-  if (donation_time_start <= now) {
+  if (donation_time_start <= now && donation_percent > 0.0) {
     applog(LOG_BLUE, "Dev Fee Start");
     dev_mining = true;
     switching_sctx_data = true;
